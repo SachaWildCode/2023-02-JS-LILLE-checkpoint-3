@@ -1,12 +1,7 @@
-const tileExists = async (req, res, next) => {
+const tileExistsMiddleware = (req, res, next) => {
   try {
-    const boat = await req.body;
-    if (
-      boat.coord_x >= 0 &&
-      boat.coord_x <= 11 &&
-      boat.coord_y >= 0 &&
-      boat.coord_y <= 5
-    ) {
+    const { coordX, coordY } = req.body;
+    if (coordX >= 0 && coordX <= 11 && coordY >= 0 && coordY <= 5) {
       next();
     } else {
       res.sendStatus(422);
@@ -16,4 +11,4 @@ const tileExists = async (req, res, next) => {
   }
 };
 
-module.exports = { tileExists };
+module.exports = { tileExistsMiddleware };
